@@ -155,6 +155,12 @@
             background: #fef3e6;
             color: #c07a2a;
         }
+        /* 购物返利 - 红色系 */
+        .entry--shopping .entry-icon {
+            background: #fde8e5;
+            color: #c0392b;
+        }
+
         /* 备用卡片图标底色 */
         .entry--placeholder .entry-icon {
             background: #eef1f6;
@@ -172,6 +178,7 @@
         /* 文字主区域 */
         .entry-text {
             flex: 1;
+            min-width: 0;
         }
 
         .entry-title {
@@ -191,6 +198,63 @@
             margin-top: 2px;
             font-weight: 400;
             letter-spacing: 0.2px;
+        }
+
+        /* 邀请码行 - 购物返利专用 */
+        .entry-invite {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 6px;
+            font-size: 13px;
+            color: #6b7c98;
+            flex-wrap: wrap;
+        }
+
+        .entry-invite .invite-code {
+            font-weight: 600;
+            color: #c0392b;
+            background: #fde8e5;
+            padding: 0 10px;
+            border-radius: 12px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            font-family: "SF Mono", "Menlo", monospace;
+        }
+
+        /* 复制按钮 */
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #eef2f7;
+            padding: 2px 12px 2px 10px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #3d5170;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            font-family: inherit;
+            line-height: 1.6;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        .copy-btn:active {
+            transform: scale(0.92);
+            background: #d5dee9;
+        }
+
+        .copy-btn .copy-icon {
+            font-size: 14px;
+            line-height: 1;
+        }
+
+        .copy-btn.copied {
+            background: #d4edda;
+            color: #1a7a4a;
         }
 
         /* 右侧小箭头 */
@@ -229,6 +293,34 @@
             border-radius: 30px;
             letter-spacing: 0.5px;
             margin-left: 4px;
+        }
+
+        /* Toast 提示 */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: rgba(30, 38, 52, 0.92);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: #f0f4fc;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+            z-index: 999;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
 
         /* 底部脚标 - 已删除内容，保留样式以防万一 */
@@ -293,6 +385,11 @@
                 background: #3d3220;
                 color: #e0a050;
             }
+            /* 购物返利 - 暗色 */
+            .entry--shopping .entry-icon {
+                background: #3d2520;
+                color: #e07a6a;
+            }
             .entry-arrow {
                 color: #5d728f;
             }
@@ -326,6 +423,30 @@
             .entry--placeholder:active {
                 background: #1e2638;
             }
+
+            /* 邀请码行 - 暗色 */
+            .entry-invite {
+                color: #99aec9;
+            }
+            .entry-invite .invite-code {
+                color: #e07a6a;
+                background: #3d2520;
+            }
+            .copy-btn {
+                background: #2c3548;
+                color: #b0c3df;
+            }
+            .copy-btn:active {
+                background: #3d4a62;
+            }
+            .copy-btn.copied {
+                background: #1a3a2a;
+                color: #60c0a0;
+            }
+            .toast {
+                background: rgba(20, 26, 40, 0.95);
+                color: #eef3fc;
+            }
         }
 
         /* 小屏手机微调 */
@@ -346,6 +467,22 @@
             }
             .entry-title {
                 font-size: 15px;
+            }
+            .entry-invite {
+                font-size: 12px;
+            }
+            .entry-invite .invite-code {
+                font-size: 12px;
+                padding: 0 8px;
+            }
+            .copy-btn {
+                font-size: 11px;
+                padding: 1px 10px 1px 8px;
+            }
+            .toast {
+                font-size: 13px;
+                padding: 8px 18px;
+                bottom: 20px;
             }
         }
     </style>
@@ -419,25 +556,138 @@
                 </div>
             </a>
 
-            <!-- 5. 备用入口二 -->
-            <div class="entry entry--placeholder">
+            <!-- 5. 购物返利-高省（替换原占位卡片） -->
+            <a href="https://kzurl06.cn/tGbuW3" target="_blank" rel="noopener noreferrer" class="entry entry--shopping">
                 <div class="entry-content">
-                    <div class="entry-icon">🔮</div>
+                    <div class="entry-icon">
+                        <img src="gs.png" alt="购物返利-高省" />
+                    </div>
                     <div class="entry-text">
-                        <div class="entry-title">
-                            敬请期待
-                            <span class="tag-coming">coming soon</span>
+                        <div class="entry-title">购物返利-高省</div>
+                        <div class="entry-desc">全网比价 · 最高返利</div>
+                        <div class="entry-invite">
+                            <span>邀请码：</span>
+                            <span class="invite-code" id="inviteCode">7X46I0</span>
+                            <button class="copy-btn" id="copyBtn" onclick="copyInvite(event)">
+                                <span class="copy-icon">📋</span> 复制
+                            </button>
                         </div>
-                        <div class="entry-desc">新服务 · 即将开放</div>
                     </div>
                     <div class="entry-arrow">›</div>
                 </div>
-            </div>
+            </a>
 
         </div>
 
+        <!-- Toast 提示 -->
+        <div class="toast" id="toast">已复制邀请码！</div>
+
         <!-- 底部提示 - 已删除 -->
     </div>
+
+    <script>
+        /**
+         * 复制邀请码
+         * @param {Event} event - 点击事件
+         */
+        function copyInvite(event) {
+            // 阻止事件冒泡，避免触发父级 a 标签的跳转
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+
+            const code = '7X46I0';
+            const copyBtn = document.getElementById('copyBtn');
+            const toast = document.getElementById('toast');
+
+            // 使用 Clipboard API 复制
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(code)
+                    .then(() => {
+                        showCopiedFeedback(copyBtn, toast);
+                    })
+                    .catch(() => {
+                        fallbackCopy(code, copyBtn, toast);
+                    });
+            } else {
+                fallbackCopy(code, copyBtn, toast);
+            }
+        }
+
+        /**
+         * 降级复制方案（使用 textarea 模拟）
+         */
+        function fallbackCopy(text, btn, toast) {
+            try {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                textarea.style.left = '-9999px';
+                textarea.style.top = '-9999px';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                showCopiedFeedback(btn, toast);
+            } catch (e) {
+                // 如果复制失败，提示用户手动复制
+                toast.textContent = '复制失败，请手动复制';
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => {
+                        toast.textContent = '已复制邀请码！';
+                    }, 300);
+                }, 1500);
+            }
+        }
+
+        /**
+         * 显示复制成功的反馈
+         */
+        function showCopiedFeedback(btn, toast) {
+            // 按钮反馈
+            btn.classList.add('copied');
+            const iconSpan = btn.querySelector('.copy-icon');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '✅ 已复制';
+
+            // Toast 提示
+            toast.textContent = '已复制邀请码！';
+            toast.classList.add('show');
+
+            // 清除之前的定时器
+            if (window._toastTimer) {
+                clearTimeout(window._toastTimer);
+            }
+            if (window._btnTimer) {
+                clearTimeout(window._btnTimer);
+            }
+
+            // 1.5秒后恢复
+            window._toastTimer = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 1500);
+
+            window._btnTimer = setTimeout(() => {
+                btn.classList.remove('copied');
+                btn.innerHTML = originalText;
+            }, 1600);
+        }
+
+        // 防止点击复制按钮时触发卡片跳转（额外安全措施）
+        document.addEventListener('DOMContentLoaded', function() {
+            const copyBtn = document.getElementById('copyBtn');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>
