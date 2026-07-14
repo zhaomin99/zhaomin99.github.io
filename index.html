@@ -22,7 +22,6 @@
             padding: 20px;
         }
 
-        /* 主卡片容器 – 圆润玻璃质感 */
         .app {
             max-width: 400px;
             width: 100%;
@@ -35,12 +34,10 @@
             transition: all 0.2s ease;
         }
 
-        /* 品牌头部 */
         .brand {
             text-align: center;
             margin-bottom: 28px;
         }
-
         .brand h1 {
             font-size: 28px;
             font-weight: 700;
@@ -50,7 +47,6 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
         .brand .sub {
             font-size: 13px;
             color: #7b8aa6;
@@ -58,7 +54,6 @@
             margin-top: 4px;
             font-weight: 400;
         }
-
         .brand .sub span {
             display: inline-block;
             background: #eef2f7;
@@ -67,14 +62,12 @@
             color: #3d5170;
         }
 
-        /* 入口卡片列表 */
         .menu {
             display: flex;
             flex-direction: column;
             gap: 16px;
         }
 
-        /* 每个入口卡片 – 大点击区域，触感友好 */
         .entry {
             display: block;
             background: white;
@@ -90,14 +83,12 @@
             -webkit-tap-highlight-color: transparent;
             user-select: none;
         }
-
         .entry:active {
             transform: scale(0.97);
             background: #f8faff;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
         }
 
-        /* 备用卡片 – 占位状态，不可点击 */
         .entry--placeholder {
             opacity: 0.7;
             background: #f8fafc;
@@ -115,14 +106,12 @@
             color: #c5d0df;
         }
 
-        /* 每个卡片内的布局 */
         .entry-content {
             display: flex;
             align-items: center;
             gap: 16px;
         }
 
-        /* 左侧图标区 – 通用样式 */
         .entry-icon {
             flex-shrink: 0;
             width: 52px;
@@ -137,26 +126,11 @@
             transition: 0.2s;
             overflow: hidden;
         }
-
-        .entry--card .entry-icon {
-            background: #eef3ff;
-        }
-        .entry--bottle .entry-icon {
-            background: #e6f7f0;
-            color: #1a7a5a;
-        }
-        .entry--qq .entry-icon {
-            background: #f0ebff;
-            color: #6d4cbd;
-        }
-        .entry--rebate .entry-icon {
-            background: #fef3e6;
-            color: #c07a2a;
-        }
-        .entry--shopping .entry-icon {
-            background: #fde8e5;
-            color: #c0392b;
-        }
+        .entry--card .entry-icon { background: #eef3ff; }
+        .entry--bottle .entry-icon { background: #e6f7f0; color: #1a7a5a; }
+        .entry--qq .entry-icon { background: #f0ebff; color: #6d4cbd; }
+        .entry--rebate .entry-icon { background: #fef3e6; color: #c07a2a; }
+        .entry--shopping .entry-icon { background: #fde8e5; color: #c0392b; }
 
         .entry-icon img {
             width: 100%;
@@ -165,7 +139,6 @@
             display: block;
         }
 
-        /* 文字主区域 */
         .entry-text {
             flex: 1;
             min-width: 0;
@@ -190,13 +163,13 @@
             letter-spacing: 0.2px;
         }
 
-        /* ---- 邀请码行：更紧凑 ---- */
+        /* ---- 邀请码行：与描述文字同字号 (13px) ---- */
         .entry-invite {
             display: flex;
             align-items: center;
-            gap: 4px;          /* 缩小间距 */
-            margin-top: 3px;   /* 上移，更紧凑 */
-            font-size: 12px;   /* 整体字号缩小 */
+            gap: 4px;
+            margin-top: 3px;
+            font-size: 13px;          /* 与 .entry-desc 一致 */
             color: #6b7c98;
             flex-wrap: wrap;
         }
@@ -205,22 +178,22 @@
             font-weight: 600;
             color: #c0392b;
             background: #fde8e5;
-            padding: 0 6px;    /* 缩小内边距 */
+            padding: 0 6px;
             border-radius: 10px;
-            font-size: 12px;
+            font-size: 13px;          /* 与父级一致 */
             letter-spacing: 0.3px;
             font-family: "SF Mono", "Menlo", monospace;
         }
 
-        /* 复制按钮：更紧凑 */
+        /* 复制按钮：字号也调整为13px，与文字同大，但按钮内可稍小一点，但为了统一，设为13px */
         .copy-btn {
             display: inline-flex;
             align-items: center;
             gap: 3px;
             background: #eef2f7;
-            padding: 1px 8px 1px 6px;  /* 缩小内边距 */
+            padding: 1px 8px 1px 6px;
             border-radius: 30px;
-            font-size: 11px;           /* 更小字号 */
+            font-size: 13px;          /* 与描述文字一致 */
             font-weight: 500;
             color: #3d5170;
             cursor: pointer;
@@ -231,23 +204,19 @@
             -webkit-tap-highlight-color: transparent;
             user-select: none;
         }
-
         .copy-btn:active {
             transform: scale(0.92);
             background: #d5dee9;
         }
-
         .copy-btn .copy-icon {
-            font-size: 12px;
+            font-size: 13px;          /* 图标与文字大小匹配 */
             line-height: 1;
         }
-
         .copy-btn.copied {
             background: #d4edda;
             color: #1a7a4a;
         }
 
-        /* 右侧小箭头 */
         .entry-arrow {
             flex-shrink: 0;
             color: #bcc9db;
@@ -255,13 +224,11 @@
             transition: 0.2s;
             margin-left: 4px;
         }
-
         .entry:active .entry-arrow {
             transform: translateX(4px);
             color: #2b3f6e;
         }
 
-        /* 标签 */
         .tag-qq {
             display: inline-block;
             background: #e9e1fa;
@@ -285,7 +252,7 @@
             margin-left: 4px;
         }
 
-        /* Toast 提示 */
+        /* Toast */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -307,17 +274,14 @@
             pointer-events: none;
             white-space: nowrap;
         }
-
         .toast.show {
             opacity: 1;
             transform: translateX(-50%) translateY(0);
         }
 
-        /* 暗色模式适配 */
+        /* 暗色模式 */
         @media (prefers-color-scheme: dark) {
-            body {
-                background: #161c28;
-            }
+            body { background: #161c28; }
             .app {
                 background: rgba(30, 38, 52, 0.92);
                 backdrop-filter: blur(12px);
@@ -330,168 +294,64 @@
                 -webkit-text-fill-color: transparent;
                 background-clip: text;
             }
-            .brand .sub {
-                color: #8899b3;
-            }
-            .brand .sub span {
-                background: #262f40;
-                color: #b0c3df;
-            }
-            .entry {
-                background: #232b3d;
-                border-color: rgba(255, 255, 255, 0.06);
-                color: #e5ecf5;
-            }
-            .entry:active {
-                background: #2c354a;
-            }
-            .entry-title {
-                color: #eef3fc;
-            }
-            .entry-desc {
-                color: #99aec9;
-            }
-            .entry-icon {
-                background: #2b364f;
-                color: #b0c8f0;
-            }
-            .entry--card .entry-icon {
-                background: #26314f;
-            }
-            .entry--bottle .entry-icon {
-                background: #1b3a33;
-                color: #60c0a0;
-            }
-            .entry--qq .entry-icon {
-                background: #312b55;
-                color: #b094f0;
-            }
-            .entry--rebate .entry-icon {
-                background: #3d3220;
-                color: #e0a050;
-            }
-            .entry--shopping .entry-icon {
-                background: #3d2520;
-                color: #e07a6a;
-            }
-            .entry-arrow {
-                color: #5d728f;
-            }
-            .tag-qq {
-                background: #3d3560;
-                color: #c8b8f0;
-            }
-            .tag-coming {
-                background: #2c3548;
-                color: #8a9dbd;
-            }
-            .entry--placeholder {
-                opacity: 0.6;
-                background: #1e2638;
-                border-color: rgba(255, 255, 255, 0.08);
-            }
-            .entry--placeholder .entry-icon {
-                background: #262f44;
-                color: #6a7f9f;
-            }
-            .entry--placeholder .entry-arrow {
-                color: #4a5f7f;
-            }
-            .entry--placeholder .entry-title {
-                color: #8a9dbd;
-            }
-            .entry--placeholder .entry-desc {
-                color: #5d728f;
-            }
-            .entry--placeholder:active {
-                background: #1e2638;
-            }
+            .brand .sub { color: #8899b3; }
+            .brand .sub span { background: #262f40; color: #b0c3df; }
+            .entry { background: #232b3d; border-color: rgba(255,255,255,0.06); color: #e5ecf5; }
+            .entry:active { background: #2c354a; }
+            .entry-title { color: #eef3fc; }
+            .entry-desc { color: #99aec9; }
+            .entry-icon { background: #2b364f; color: #b0c8f0; }
+            .entry--card .entry-icon { background: #26314f; }
+            .entry--bottle .entry-icon { background: #1b3a33; color: #60c0a0; }
+            .entry--qq .entry-icon { background: #312b55; color: #b094f0; }
+            .entry--rebate .entry-icon { background: #3d3220; color: #e0a050; }
+            .entry--shopping .entry-icon { background: #3d2520; color: #e07a6a; }
+            .entry-arrow { color: #5d728f; }
+            .tag-qq { background: #3d3560; color: #c8b8f0; }
+            .tag-coming { background: #2c3548; color: #8a9dbd; }
+            .entry--placeholder { opacity: 0.6; background: #1e2638; border-color: rgba(255,255,255,0.08); }
+            .entry--placeholder .entry-icon { background: #262f44; color: #6a7f9f; }
+            .entry--placeholder .entry-arrow { color: #4a5f7f; }
+            .entry--placeholder .entry-title { color: #8a9dbd; }
+            .entry--placeholder .entry-desc { color: #5d728f; }
+            .entry--placeholder:active { background: #1e2638; }
 
-            .entry-invite {
-                color: #99aec9;
-            }
-            .entry-invite .invite-code {
-                color: #e07a6a;
-                background: #3d2520;
-            }
-            .copy-btn {
-                background: #2c3548;
-                color: #b0c3df;
-            }
-            .copy-btn:active {
-                background: #3d4a62;
-            }
-            .copy-btn.copied {
-                background: #1a3a2a;
-                color: #60c0a0;
-            }
-            .toast {
-                background: rgba(20, 26, 40, 0.95);
-                color: #eef3fc;
-            }
+            .entry-invite { color: #99aec9; }
+            .entry-invite .invite-code { color: #e07a6a; background: #3d2520; }
+            .copy-btn { background: #2c3548; color: #b0c3df; }
+            .copy-btn:active { background: #3d4a62; }
+            .copy-btn.copied { background: #1a3a2a; color: #60c0a0; }
+            .toast { background: rgba(20,26,40,0.95); color: #eef3fc; }
         }
 
-        /* 小屏手机微调 */
+        /* 小屏微调 */
         @media (max-width: 400px) {
-            .app {
-                padding: 24px 16px 24px;
-                border-radius: 32px;
-            }
-            .entry {
-                padding: 14px 16px;
-                border-radius: 20px;
-            }
-            .entry-icon {
-                width: 44px;
-                height: 44px;
-                font-size: 22px;
-                border-radius: 14px;
-            }
-            .entry-title {
-                font-size: 15px;
-            }
-            .entry-invite {
-                font-size: 11px;
-                gap: 3px;
-                margin-top: 2px;
-            }
-            .entry-invite .invite-code {
-                font-size: 11px;
-                padding: 0 4px;
-            }
-            .copy-btn {
-                font-size: 10px;
-                padding: 0 6px 0 4px;
-            }
-            .copy-btn .copy-icon {
-                font-size: 11px;
-            }
-            .toast {
-                font-size: 13px;
-                padding: 8px 18px;
-                bottom: 20px;
-            }
+            .app { padding: 24px 16px; border-radius: 32px; }
+            .entry { padding: 14px 16px; border-radius: 20px; }
+            .entry-icon { width: 44px; height: 44px; font-size: 22px; border-radius: 14px; }
+            .entry-title { font-size: 15px; }
+            .entry-invite { font-size: 12px; gap: 3px; margin-top: 2px; }   /* 小屏可稍小，但保持相对一致 */
+            .entry-invite .invite-code { font-size: 12px; padding: 0 4px; }
+            .copy-btn { font-size: 12px; padding: 0 6px 0 4px; }
+            .copy-btn .copy-icon { font-size: 12px; }
+            .toast { font-size: 13px; padding: 8px 18px; bottom: 20px; }
         }
     </style>
 </head>
 <body>
 
     <div class="app">
-        <!-- 品牌区 -->
         <div class="brand">
             <h1>水夕导航</h1>
             <div class="sub"><span>👇 点击卡片 · 一键跳转</span></div>
         </div>
 
-        <!-- 入口卡片 -->
         <div class="menu">
 
             <!-- 1. 流量卡推荐 -->
             <a href="https://vip.777haoka.cn/index?k=Nk5kalpNVDdaanc9" target="_blank" rel="noopener noreferrer" class="entry entry--card">
                 <div class="entry-content">
-                    <div class="entry-icon">
-                        <img src="sxtx.png" alt="水夕通讯" />
-                    </div>
+                    <div class="entry-icon"><img src="sxtx.png" alt="水夕通讯" /></div>
                     <div class="entry-text">
                         <div class="entry-title">水夕通讯-流量卡推荐</div>
                         <div class="entry-desc">高性价比 · 官方授权</div>
@@ -503,9 +363,7 @@
             <!-- 2. 瓶盖网 -->
             <a href="https://sx.fc688.cn" target="_blank" rel="noopener noreferrer" class="entry entry--bottle">
                 <div class="entry-content">
-                    <div class="entry-icon">
-                        <img src="sxpgw.png" alt="水夕瓶盖网" />
-                    </div>
+                    <div class="entry-icon"><img src="sxpgw.png" alt="水夕瓶盖网" /></div>
                     <div class="entry-text">
                         <div class="entry-title">水夕瓶盖网</div>
                         <div class="entry-desc">轻松扫码 · 每日羊毛</div>
@@ -532,9 +390,7 @@
             <!-- 4. 外卖返利 -->
             <a href="https://wxmpurl.cn/Eu8LOaZ05Cc" target="_blank" rel="noopener noreferrer" class="entry entry--rebate">
                 <div class="entry-content">
-                    <div class="entry-icon">
-                        <img src="xc.png" alt="外卖返利" />
-                    </div>
+                    <div class="entry-icon"><img src="xc.png" alt="外卖返利" /></div>
                     <div class="entry-text">
                         <div class="entry-title">外卖返利-新人免单</div>
                         <div class="entry-desc">点外卖先领券，每单都省钱</div>
@@ -543,16 +399,13 @@
                 </div>
             </a>
 
-            <!-- 5. 购物返利-高省（紧凑邀请码） -->
+            <!-- 5. 购物返利-高省（邀请码与描述文字同字号 13px） -->
             <a href="https://kzurl06.cn/tGbuW3" target="_blank" rel="noopener noreferrer" class="entry entry--shopping">
                 <div class="entry-content">
-                    <div class="entry-icon">
-                        <img src="gs.png" alt="购物返利-高省" />
-                    </div>
+                    <div class="entry-icon"><img src="gs.png" alt="购物返利-高省" /></div>
                     <div class="entry-text">
                         <div class="entry-title">购物返利-高省</div>
                         <div class="entry-desc">全网比价 · 最高返利</div>
-                        <!-- 紧凑布局：邀请码 + 复制按钮 -->
                         <div class="entry-invite">
                             <span>邀请码：</span>
                             <span class="invite-code" id="inviteCode">7X46I0</span>
@@ -567,7 +420,6 @@
 
         </div>
 
-        <!-- Toast 提示 -->
         <div class="toast" id="toast">已复制邀请码！</div>
     </div>
 
