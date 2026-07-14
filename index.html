@@ -1,419 +1,409 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-	<title>水夕导航</title>
-	<style>
-		/* 全局重置 & 字体 */
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-		}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>水夕导航</title>
+    <style>
+        /* 全局重置 & 字体 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-		body {
-			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
-			background: #f4f6fa;
-			min-height: 100vh;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			padding: 20px;
-		}
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: #f4f6fa;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
 
-		/* 主卡片容器 – 圆润玻璃质感 */
-		.app {
-			max-width: 400px;
-			width: 100%;
-			background: rgba(255, 255, 255, 0.85);
-			backdrop-filter: blur(12px);
-			-webkit-backdrop-filter: blur(12px);
-			border-radius: 48px 48px 32px 32px;
-			padding: 32px 24px 30px;
-			box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
-			transition: all 0.2s ease;
-		}
+        /* 主卡片容器 – 圆润玻璃质感 */
+        .app {
+            max-width: 400px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 48px 48px 32px 32px;
+            padding: 32px 24px 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+            transition: all 0.2s ease;
+        }
 
-		/* 品牌头部 */
-		.brand {
-			text-align: center;
-			margin-bottom: 28px;
-		}
+        /* 品牌头部 */
+        .brand {
+            text-align: center;
+            margin-bottom: 28px;
+        }
 
-		.brand h1 {
-			font-size: 28px;
-			font-weight: 700;
-			letter-spacing: 2px;
-			background: linear-gradient(145deg, #1e2b4f, #2b3f6e);
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
-			background-clip: text;
-		}
+        .brand h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: linear-gradient(145deg, #1e2b4f, #2b3f6e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-		.brand .sub {
-			font-size: 13px;
-			color: #7b8aa6;
-			letter-spacing: 4px;
-			margin-top: 4px;
-			font-weight: 400;
-		}
+        .brand .sub {
+            font-size: 13px;
+            color: #7b8aa6;
+            letter-spacing: 4px;
+            margin-top: 4px;
+            font-weight: 400;
+        }
 
-		.brand .sub span {
-			display: inline-block;
-			background: #eef2f7;
-			padding: 0 14px;
-			border-radius: 20px;
-			color: #3d5170;
-		}
+        .brand .sub span {
+            display: inline-block;
+            background: #eef2f7;
+            padding: 0 14px;
+            border-radius: 20px;
+            color: #3d5170;
+        }
 
-		/* 入口卡片列表 */
-		.menu {
-			display: flex;
-			flex-direction: column;
-			gap: 16px;
-		}
+        /* 入口卡片列表 */
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
 
-		/* 每个入口卡片 – 大点击区域，触感友好 */
-		.entry {
-			display: block;
-			background: white;
-			border-radius: 24px;
-			padding: 18px 22px;
-			text-decoration: none;
-			color: #1a2639;
-			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
-			transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
-			border: 1px solid rgba(255, 255, 255, 0.6);
-			position: relative;
-			overflow: hidden;
-			-webkit-tap-highlight-color: transparent;
-			user-select: none;
-		}
+        /* 每个入口卡片 – 大点击区域，触感友好 */
+        .entry {
+            display: block;
+            background: white;
+            border-radius: 24px;
+            padding: 18px 22px;
+            text-decoration: none;
+            color: #1a2639;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
+            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            position: relative;
+            overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
 
-		.entry:active {
-			transform: scale(0.97);
-			background: #f8faff;
-			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-		}
+        .entry:active {
+            transform: scale(0.97);
+            background: #f8faff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        }
 
-		/* 备用卡片 – 占位状态，不可点击 */
-		.entry--placeholder {
-			opacity: 0.7;
-			background: #f8fafc;
-			border: 1.5px dashed #d0d9e6;
-			box-shadow: none;
-			cursor: default;
-			pointer-events: none;  /* 禁止交互 */
-		}
-		.entry--placeholder:active {
-			transform: none;
-			background: #f8fafc;
-			box-shadow: none;
-		}
-		.entry--placeholder .entry-arrow {
-			color: #c5d0df;
-		}
+        /* 备用卡片 – 占位状态，不可点击 */
+        .entry--placeholder {
+            opacity: 0.7;
+            background: #f8fafc;
+            border: 1.5px dashed #d0d9e6;
+            box-shadow: none;
+            cursor: default;
+            pointer-events: none;
+            /* 禁止交互 */
+        }
+        .entry--placeholder:active {
+            transform: none;
+            background: #f8fafc;
+            box-shadow: none;
+        }
+        .entry--placeholder .entry-arrow {
+            color: #c5d0df;
+        }
 
-		/* 每个卡片内的布局 */
-		.entry-content {
-			display: flex;
-			align-items: center;
-			gap: 16px;
-		}
+        /* 每个卡片内的布局 */
+        .entry-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
 
-		/* 左侧图标区 – 通用样式 */
-		.entry-icon {
-			flex-shrink: 0;
-			width: 52px;
-			height: 52px;
-			border-radius: 18px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			font-size: 26px;
-			background: #f0f4fe;
-			color: #2b3f6e;
-			transition: 0.2s;
-			overflow: hidden;
-		}
+        /* 左侧图标区 – 通用样式 */
+        .entry-icon {
+            flex-shrink: 0;
+            width: 52px;
+            height: 52px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            background: #f0f4fe;
+            color: #2b3f6e;
+            transition: 0.2s;
+            overflow: hidden;
+        }
 
-		/* 不同卡片不同图标底色 */
-		.entry--card .entry-icon {
-			background: #eef3ff;
-		}
-		.entry--bottle .entry-icon {
-			background: #e6f7f0;
-			color: #1a7a5a;
-		}
-		.entry--qq .entry-icon {
-			background: #f0ebff;
-			color: #6d4cbd;
-		}
-		/* 备用卡片图标底色 */
-		.entry--placeholder .entry-icon {
-			background: #eef1f6;
-			color: #9aadc9;
-		}
+        /* 不同卡片不同图标底色 */
+        .entry--card .entry-icon {
+            background: #eef3ff;
+        }
+        .entry--bottle .entry-icon {
+            background: #e6f7f0;
+            color: #1a7a5a;
+        }
+        .entry--qq .entry-icon {
+            background: #f0ebff;
+            color: #6d4cbd;
+        }
+        .entry--rebate .entry-icon {
+            background: #fef3e6;
+            color: #c07a2a;
+        }
+        /* 备用卡片图标底色 */
+        .entry--placeholder .entry-icon {
+            background: #eef1f6;
+            color: #9aadc9;
+        }
 
-		/* 图片 Logo 专用：填满容器 */
-		.entry-icon img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			display: block;
-		}
+        /* 图片 Logo 专用：填满容器 */
+        .entry-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
 
-		/* 文字主区域 */
-		.entry-text {
-			flex: 1;
-		}
+        /* 文字主区域 */
+        .entry-text {
+            flex: 1;
+        }
 
-		.entry-title {
-			font-size: 17px;
-			font-weight: 600;
-			letter-spacing: 0.3px;
-			color: #141e30;
-			display: flex;
-			align-items: center;
-			gap: 8px;
-			flex-wrap: wrap;
-		}
+        .entry-title {
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            color: #141e30;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
 
-		.entry-desc {
-			font-size: 13px;
-			color: #6b7c98;
-			margin-top: 2px;
-			font-weight: 400;
-			letter-spacing: 0.2px;
-		}
+        .entry-desc {
+            font-size: 13px;
+            color: #6b7c98;
+            margin-top: 2px;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+        }
 
-		/* 右侧小箭头 */
-		.entry-arrow {
-			flex-shrink: 0;
-			color: #bcc9db;
-			font-size: 20px;
-			transition: 0.2s;
-			margin-left: 4px;
-		}
+        /* 右侧小箭头 */
+        .entry-arrow {
+            flex-shrink: 0;
+            color: #bcc9db;
+            font-size: 20px;
+            transition: 0.2s;
+            margin-left: 4px;
+        }
 
-		.entry:active .entry-arrow {
-			transform: translateX(4px);
-			color: #2b3f6e;
-		}
+        .entry:active .entry-arrow {
+            transform: translateX(4px);
+            color: #2b3f6e;
+        }
 
-		/* 标签 */
-		.tag-qq {
-			display: inline-block;
-			background: #e9e1fa;
-			color: #5a3d9a;
-			font-size: 10px;
-			font-weight: 600;
-			padding: 2px 10px;
-			border-radius: 30px;
-			letter-spacing: 0.5px;
-			margin-left: 4px;
-		}
-		.tag-coming {
-			display: inline-block;
-			background: #e8edf5;
-			color: #7a8ba8;
-			font-size: 10px;
-			font-weight: 600;
-			padding: 2px 10px;
-			border-radius: 30px;
-			letter-spacing: 0.5px;
-			margin-left: 4px;
-		}
+        /* 标签 */
+        .tag-qq {
+            display: inline-block;
+            background: #e9e1fa;
+            color: #5a3d9a;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 30px;
+            letter-spacing: 0.5px;
+            margin-left: 4px;
+        }
+        .tag-coming {
+            display: inline-block;
+            background: #e8edf5;
+            color: #7a8ba8;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 30px;
+            letter-spacing: 0.5px;
+            margin-left: 4px;
+        }
 
-		/* 底部脚标 */
-		.footer {
-			margin-top: 28px;
-			text-align: center;
-			font-size: 12px;
-			color: #9aacc4;
-			letter-spacing: 0.8px;
-			border-top: 1px solid rgba(0, 0, 0, 0.04);
-			padding-top: 18px;
-		}
+        /* 底部脚标 - 已删除内容，保留样式以防万一 */
+        .footer {
+            display: none;
+        }
 
-		.footer a {
-			color: #4a6a9f;
-			text-decoration: none;
-			font-weight: 500;
-		}
+        /* 暗色模式适配 */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #161c28;
+            }
+            .app {
+                background: rgba(30, 38, 52, 0.92);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+            }
+            .brand h1 {
+                background: linear-gradient(145deg, #b6c8f0, #8aa0d0);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+            .brand .sub {
+                color: #8899b3;
+            }
+            .brand .sub span {
+                background: #262f40;
+                color: #b0c3df;
+            }
+            .entry {
+                background: #232b3d;
+                border-color: rgba(255, 255, 255, 0.06);
+                color: #e5ecf5;
+            }
+            .entry:active {
+                background: #2c354a;
+            }
+            .entry-title {
+                color: #eef3fc;
+            }
+            .entry-desc {
+                color: #99aec9;
+            }
+            .entry-icon {
+                background: #2b364f;
+                color: #b0c8f0;
+            }
+            .entry--card .entry-icon {
+                background: #26314f;
+            }
+            .entry--bottle .entry-icon {
+                background: #1b3a33;
+                color: #60c0a0;
+            }
+            .entry--qq .entry-icon {
+                background: #312b55;
+                color: #b094f0;
+            }
+            .entry--rebate .entry-icon {
+                background: #3d3220;
+                color: #e0a050;
+            }
+            .entry-arrow {
+                color: #5d728f;
+            }
+            .tag-qq {
+                background: #3d3560;
+                color: #c8b8f0;
+            }
+            .tag-coming {
+                background: #2c3548;
+                color: #8a9dbd;
+            }
+            /* 备用卡片暗色 */
+            .entry--placeholder {
+                opacity: 0.6;
+                background: #1e2638;
+                border-color: rgba(255, 255, 255, 0.08);
+            }
+            .entry--placeholder .entry-icon {
+                background: #262f44;
+                color: #6a7f9f;
+            }
+            .entry--placeholder .entry-arrow {
+                color: #4a5f7f;
+            }
+            .entry--placeholder .entry-title {
+                color: #8a9dbd;
+            }
+            .entry--placeholder .entry-desc {
+                color: #5d728f;
+            }
+            .entry--placeholder:active {
+                background: #1e2638;
+            }
+        }
 
-		/* 暗色模式适配 */
-		@media (prefers-color-scheme: dark) {
-			body {
-				background: #161c28;
-			}
-			.app {
-				background: rgba(30, 38, 52, 0.92);
-				backdrop-filter: blur(12px);
-				-webkit-backdrop-filter: blur(12px);
-				box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
-			}
-			.brand h1 {
-				background: linear-gradient(145deg, #b6c8f0, #8aa0d0);
-				-webkit-background-clip: text;
-				-webkit-text-fill-color: transparent;
-				background-clip: text;
-			}
-			.brand .sub {
-				color: #8899b3;
-			}
-			.brand .sub span {
-				background: #262f40;
-				color: #b0c3df;
-			}
-			.entry {
-				background: #232b3d;
-				border-color: rgba(255, 255, 255, 0.06);
-				color: #e5ecf5;
-			}
-			.entry:active {
-				background: #2c354a;
-			}
-			.entry-title {
-				color: #eef3fc;
-			}
-			.entry-desc {
-				color: #99aec9;
-			}
-			.entry-icon {
-				background: #2b364f;
-				color: #b0c8f0;
-			}
-			.entry--card .entry-icon {
-				background: #26314f;
-			}
-			.entry--bottle .entry-icon {
-				background: #1b3a33;
-				color: #60c0a0;
-			}
-			.entry--qq .entry-icon {
-				background: #312b55;
-				color: #b094f0;
-			}
-			.entry-arrow {
-				color: #5d728f;
-			}
-			.tag-qq {
-				background: #3d3560;
-				color: #c8b8f0;
-			}
-			.tag-coming {
-				background: #2c3548;
-				color: #8a9dbd;
-			}
-			.footer {
-				color: #5d728f;
-				border-top-color: rgba(255, 255, 255, 0.06);
-			}
-			.footer a {
-				color: #8aafe0;
-			}
-			/* 备用卡片暗色 */
-			.entry--placeholder {
-				opacity: 0.6;
-				background: #1e2638;
-				border-color: rgba(255, 255, 255, 0.08);
-			}
-			.entry--placeholder .entry-icon {
-				background: #262f44;
-				color: #6a7f9f;
-			}
-			.entry--placeholder .entry-arrow {
-				color: #4a5f7f;
-			}
-			.entry--placeholder .entry-title {
-				color: #8a9dbd;
-			}
-			.entry--placeholder .entry-desc {
-				color: #5d728f;
-			}
-			.entry--placeholder:active {
-				background: #1e2638;
-			}
-		}
-
-		/* 小屏手机微调 */
-		@media (max-width: 400px) {
-			.app {
-				padding: 24px 16px 24px;
-				border-radius: 32px;
-			}
-			.entry {
-				padding: 14px 16px;
-				border-radius: 20px;
-			}
-			.entry-icon {
-				width: 44px;
-				height: 44px;
-				font-size: 22px;
-				border-radius: 14px;
-			}
-			.entry-title {
-				font-size: 15px;
-			}
-		}
-	</style>
+        /* 小屏手机微调 */
+        @media (max-width: 400px) {
+            .app {
+                padding: 24px 16px 24px;
+                border-radius: 32px;
+            }
+            .entry {
+                padding: 14px 16px;
+                border-radius: 20px;
+            }
+            .entry-icon {
+                width: 44px;
+                height: 44px;
+                font-size: 22px;
+                border-radius: 14px;
+            }
+            .entry-title {
+                font-size: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-	<div class="app">
-		<!-- 品牌区 -->
-		<div class="brand">
-			<h1>水夕导航</h1>
-			<div class="sub"><span>· 快捷入口 ·</span></div>
-		</div>
+    <div class="app">
+        <!-- 品牌区 -->
+        <div class="brand">
+            <h1>水夕导航</h1>
+            <div class="sub"><span>👇 点击卡片 · 一键跳转</span></div>
+        </div>
 
-		<!-- 入口卡片 -->
-		<div class="menu">
+        <!-- 入口卡片 -->
+        <div class="menu">
 
-			<!-- 1. 流量卡推荐 – 使用图片 Logo -->
-			<a href="https://vip.777haoka.cn/index?k=Nk5kalpNVDdaanc9" target="_blank" rel="noopener noreferrer" class="entry entry--card">
-				<div class="entry-content">
-					<div class="entry-icon">
-						<img src="sxtx.png" alt="水夕通讯" />
-					</div>
-					<div class="entry-text">
-						<div class="entry-title">水夕通讯-流量卡推荐</div>
-						<div class="entry-desc">高性价比 · 官方授权</div>
-					</div>
-					<div class="entry-arrow">›</div>
-				</div>
-			</a>
+            <!-- 1. 流量卡推荐 – 使用图片 Logo -->
+            <a href="https://vip.777haoka.cn/index?k=Nk5kalpNVDdaanc9" target="_blank" rel="noopener noreferrer" class="entry entry--card">
+                <div class="entry-content">
+                    <div class="entry-icon">
+                        <img src="sxtx.png" alt="水夕通讯" />
+                    </div>
+                    <div class="entry-text">
+                        <div class="entry-title">水夕通讯-流量卡推荐</div>
+                        <div class="entry-desc">高性价比 · 官方授权</div>
+                    </div>
+                    <div class="entry-arrow">›</div>
+                </div>
+            </a>
 
-			<!-- 2. 瓶盖网 -->
-			<a href="https://sx.fc688.cn" target="_blank" rel="noopener noreferrer" class="entry entry--bottle">
-				<div class="entry-content">
-					<div class="entry-icon">
-						<img src="sxpgw.png" alt="水夕瓶盖网" />
-					</div>
-					<div class="entry-text">
-						<div class="entry-title">水夕瓶盖网</div>
-						<div class="entry-desc">轻松扫码 · 每日羊毛</div>
-					</div>
-					<div class="entry-arrow">›</div>
-				</div>
-			</a>
+            <!-- 2. 瓶盖网 -->
+            <a href="https://sx.fc688.cn" target="_blank" rel="noopener noreferrer" class="entry entry--bottle">
+                <div class="entry-content">
+                    <div class="entry-icon">
+                        <img src="sxpgw.png" alt="水夕瓶盖网" />
+                    </div>
+                    <div class="entry-text">
+                        <div class="entry-title">水夕瓶盖网</div>
+                        <div class="entry-desc">轻松扫码 · 每日羊毛</div>
+                    </div>
+                    <div class="entry-arrow">›</div>
+                </div>
+            </a>
 
-			<!-- 3. QQ群 -->
-			<a href="https://qun.qq.com/universal-share/share?ac=1&authKey=MBLTkvtAeig0SQBDsppKYXV%2FIB0oKjtoQNVnLEUk30%2B1POM239zj12H2RcY1pykt&busi_data=eyJncm91cENvZGUiOiIxMDQ4ODI4MTY3IiwidG9rZW4iOiJld29hd3ZyRXhWc21tYXprRzlIWFBzV1RVbG5JR3VLci81QW1zSlAyVkNvSnBpN3dLcy8wY2xXNVk1RCtrZkhTIiwidWluIjoiMTk4ODUzMzYxIn0%3D&data=pdE9XEa0aUH58sTOatoF_MSxQmNrAwsH_-l0tojK3uMlV-YGJM0SiBiqyeX_NPip3Zk5QAP3BUn7LpJyBQCLAA&svctype=4&tempid=h5_group_info" target="_blank" rel="noopener noreferrer" class="entry entry--qq">
-				<div class="entry-content">
-					<div class="entry-icon">💬</div>
-					<div class="entry-text">
-						<div class="entry-title">
-							加入QQ群
-							<span class="tag-qq">1048828167</span>
-						</div>
-						<div class="entry-desc">神卡通知 · 瓶盖报水</div>
-					</div>
-					<div class="entry-arrow">›</div>
-				</div>
-			</a>
+            <!-- 3. QQ群 -->
+            <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=MBLTkvtAeig0SQBDsppKYXV%2FIB0oKjtoQNVnLEUk30%2B1POM239zj12H2RcY1pykt&busi_data=eyJncm91cENvZGUiOiIxMDQ4ODI4MTY3IiwidG9rZW4iOiJld29hd3ZyRXhWc21tYXprRzlIWFBzV1RVbG5JR3VLci81QW1zSlAyVkNvSnBpN3dLcy8wY2xXNVk1RCtrZkhTIiwidWluIjoiMTk4ODUzMzYxIn0%3D&data=pdE9XEa0aUH58sTOatoF_MSxQmNrAwsH_-l0tojK3uMlV-YGJM0SiBiqyeX_NPip3Zk5QAP3BUn7LpJyBQCLAA&svctype=4&tempid=h5_group_info" target="_blank" rel="noopener noreferrer" class="entry entry--qq">
+                <div class="entry-content">
+                    <div class="entry-icon">💬</div>
+                    <div class="entry-text">
+                        <div class="entry-title">
+                            加入QQ群
+                            <span class="tag-qq">1048828167</span>
+                        </div>
+                        <div class="entry-desc">神卡通知 · 瓶盖报水</div>
+                    </div>
+                    <div class="entry-arrow">›</div>
+                </div>
+            </a>
 
             <!-- 4. 外卖返利 – 使用图片 xc.png -->
             <a href="https://wxmpurl.cn/Eu8LOaZ05Cc" target="_blank" rel="noopener noreferrer" class="entry entry--rebate">
@@ -427,30 +417,27 @@
                     </div>
                     <div class="entry-arrow">›</div>
                 </div>
-			</a>
-			
-			<!-- 5. 备用入口二 -->
-			<div class="entry entry--placeholder">
-				<div class="entry-content">
-					<div class="entry-icon">🔮</div>
-					<div class="entry-text">
-						<div class="entry-title">
-							敬请期待
-							<span class="tag-coming">coming soon</span>
-						</div>
-						<div class="entry-desc">新服务 · 即将开放</div>
-					</div>
-					<div class="entry-arrow">›</div>
-				</div>
-			</div>
+            </a>
 
-		</div>
+            <!-- 5. 备用入口二 -->
+            <div class="entry entry--placeholder">
+                <div class="entry-content">
+                    <div class="entry-icon">🔮</div>
+                    <div class="entry-text">
+                        <div class="entry-title">
+                            敬请期待
+                            <span class="tag-coming">coming soon</span>
+                        </div>
+                        <div class="entry-desc">新服务 · 即将开放</div>
+                    </div>
+                    <div class="entry-arrow">›</div>
+                </div>
+            </div>
 
-		<!-- 底部提示 -->
-		<div class="footer">
-			<span>👆 点击卡片 · 一键跳转</span>
-		</div>
-	</div>
+        </div>
+
+        <!-- 底部提示 - 已删除 -->
+    </div>
 
 </body>
 </html>
