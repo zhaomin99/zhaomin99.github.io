@@ -1,425 +1,107 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>水夕导航</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family:
-                -apple-system,
-                BlinkMacSystemFont,
-                "PingFang SC",
-                "Microsoft YaHei",
-                sans-serif;
-
-            min-height: 100vh;
-
-            background:
-                radial-gradient(
-                    circle at 50% 0%,
-                    rgba(210,225,255,.65),
-                    transparent 35%
-                ),
-                linear-gradient(
-                    180deg,
-                    #f4f7fc 0%,
-                    #fafbfe 45%,
-                    #ffffff 100%
-                );
-
-            color: #182338;
-        }
-
-
-        .app {
-            width: min(100%, 520px);
-            margin: auto;
-
-            padding:
-                32px
-                16px
-                calc(40px + env(safe-area-inset-bottom));
-        }
-
-
-        .brand {
-            text-align: center;
-            margin-bottom: 28px;
-        }
-
-
-        .brand h1 {
-            font-size: 32px;
-            font-weight: 750;
-            letter-spacing: 2px;
-        }
-
-
-        .brand p {
-            margin-top: 8px;
-            font-size: 14px;
-            color: #7c8798;
-        }
-
-
-        .menu {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-
-        .card {
-            display: flex;
-            align-items: center;
-
-            background: rgba(255,255,255,.86);
-            backdrop-filter: blur(15px);
-
-            border-radius: 22px;
-            padding: 16px;
-
-            text-decoration: none;
-            color: #182338;
-
-            box-shadow:
-                0 8px 25px rgba(30,55,90,.08);
-
-            transition: .25s;
-        }
-
-
-        .card:hover {
-            transform: translateY(-3px);
-        }
-
-
-        .card:active {
-            transform: scale(.97);
-        }
-
-
-        .icon {
-            width: 52px;
-            height: 52px;
-
-            border-radius: 18px;
-            overflow: hidden;
-
-            flex-shrink: 0;
-            margin-right: 15px;
-
-            background: #eef3ff;
-        }
-
-
-        .icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-
-        .info {
-            flex: 1;
-            min-width: 0;
-        }
-
-
-        .title {
-            font-size: 17px;
-            font-weight: 650;
-        }
-
-
-        .desc,
-        .code {
-            margin-top: 5px;
-
-            font-size: 13px;
-            color: #718097;
-        }
-
-
-        .arrow {
-            font-size: 24px;
-            color: #c4cedc;
-        }
-
-
-        .code {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-
-        .code b {
-            background: #fde8e5;
-            color: #c0392b;
-
-            padding: 2px 8px;
-            border-radius: 9px;
-        }
-
-
-        .copy-btn {
-            border: 0;
-
-            background: #eef2f7;
-            color: #40516b;
-
-            border-radius: 20px;
-
-            padding: 3px 10px;
-
-            font-size: 13px;
-        }
-
-
-        .copy-btn.ok {
-            background: #dff5e8;
-            color: #16844c;
-        }
-
-
-        .toast {
-            position: fixed;
-
-            left: 50%;
-            bottom: 35px;
-
-            transform: translate(-50%,60px);
-
-            opacity: 0;
-
-            background: rgba(25,33,48,.94);
-            color: white;
-
-            padding: 10px 24px;
-            border-radius: 30px;
-
-            transition: .35s;
-        }
-
-
-        .toast.show {
-            opacity: 1;
-            transform: translate(-50%,0);
-        }
-
-
-        @media(min-width:768px) {
-
-            .app {
-                padding-top: 70px;
-            }
-
-            .brand h1 {
-                font-size: 40px;
-            }
-
-            .card {
-                padding: 20px 24px;
-                border-radius: 26px;
-            }
-
-            .icon {
-                width: 64px;
-                height: 64px;
-            }
-
-            .title {
-                font-size: 20px;
-            }
-        }
-
-    </style>
-</head>
-
-
-<body>
-
-<div class="app">
-
-    <div class="brand">
-        <h1>水夕导航</h1>
-        <p>全网优质资源 · 一键直达</p>
-    </div>
-
-
-    <div class="menu">
-
-        <!-- 其他卡片结构保持 V3 -->
-
-        <a class="card" href="https://kzurl06.cn/tGbuW3">
-            <div class="icon">
-                <img src="gs.png">
-            </div>
-
-            <div class="info">
-
-                <div class="title">
-                    购物返利-高省
-                </div>
-
-                <div class="desc">
-                    全网比价 · 最高返利
-                </div>
-
-                <div class="code">
-                    邀请码
-                    <b id="code">7X46I0</b>
-
-                    <button
-                        class="copy-btn"
-                        onclick="copyCode(event)">
-                        复制
-                    </button>
-                </div>
-
-            </div>
-
-            <div class="arrow">
-                ›
-            </div>
-
-        </a>
-
-    </div>
-
-</div>
-
-
-<div class="toast" id="toast">
-    已复制邀请码！
-</div>
-
-
-<script>
-
-function copyCode(event) {
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    const code =
-        document.getElementById("code").innerText;
-
-    const btn =
-        event.currentTarget;
-
-    const toast =
-        document.getElementById("toast");
-
-
-    function success() {
-
-        btn.classList.add("ok");
-
-        btn.innerHTML =
-            "✅已复制";
-
-
-        toast.classList.add("show");
-
-
-        setTimeout(() => {
-
-            btn.classList.remove("ok");
-
-            btn.innerHTML =
-                "复制";
-
-            toast.classList.remove("show");
-
-        },1600);
-
-    }
-
-
-    navigator.clipboard
-        .writeText(code)
-        .then(success);
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>水夕导航</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+min-height:100vh;
+background:radial-gradient(circle at 50% 0%,rgba(210,225,255,.75),transparent 38%),linear-gradient(180deg,#f5f8fd,#fff);
 }
+.app{width:min(100%,520px);margin:auto;padding:32px 16px}
+.brand{text-align:center;margin-bottom:28px}
+.brand h1{font-size:32px;letter-spacing:2px}
+.brand p{margin-top:8px;color:#7c8798}
+.card{display:flex;align-items:center;background:rgba(255,255,255,.86);backdrop-filter:blur(15px);border-radius:22px;padding:16px;margin-bottom:14px;text-decoration:none;color:#182338;box-shadow:0 8px 25px rgba(30,55,90,.08)}
+.icon{width:52px;height:52px;border-radius:18px;overflow:hidden;margin-right:15px;flex:none}
+.icon img{width:100%;height:100%;object-fit:cover}
+.info{flex:1}.title{font-size:17px;font-weight:650}.desc,.code{font-size:13px;color:#718097;margin-top:5px}
+.arrow{font-size:24px;color:#c4cedc}
+.code{display:flex;align-items:center;gap:6px}
+.code b{background:#fde8e5;color:#c0392b;padding:2px 8px;border-radius:9px}
+.copy-btn{border:0;background:#eef2f7;border-radius:20px;padding:3px 12px}
+.toast{position:fixed;left:50%;bottom:35px;opacity:0;transform:translate(-50%,60px);background:#192130;color:#fff;padding:10px 24px;border-radius:30px;transition:.3s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(min-width:768px){
+.app{padding-top:70px}
+.brand h1{font-size:40px}
+.card{padding:20px 24px;border-radius:26px}
+.icon{width:64px;height:64px}
+.title{font-size:20px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="brand">
+<h1>水夕导航</h1>
+<p>全网优质资源 · 一键直达</p>
+</div>
+<div class="menu">
 
-</script>
+<!-- 入口结构保留，替换为你的图片和链接即可 -->
 
+<a class="card" href="https://vip.777haoka.cn/index?k=Nk5kalpNVDdaanc9">
+<div class="icon"><img src="sxtx.png"></div>
+<div class="info"><div class="title">水夕通讯-流量卡推荐</div><div class="desc">高性价比 · 官方授权</div></div>
+<div class="arrow">›</div>
+</a>
 
-</body>
-</html>
-="copyCode(event)">
-                        复制
-                    </button>
-                </div>
+<a class="card" href="https://sx.fc688.cn">
+<div class="icon"><img src="sxpgw.png"></div>
+<div class="info"><div class="title">水夕瓶盖网</div><div class="desc">轻松扫码 · 每日羊毛</div></div>
+<div class="arrow">›</div>
+</a>
 
-            </div>
+<a class="card" href="#">
+<div class="icon">💬</div>
+<div class="info"><div class="title">加入QQ群</div><div class="desc">神卡通知 · 瓶盖报水</div></div>
+<div class="arrow">›</div>
+</a>
 
-            <div class="arrow">
-                ›
-            </div>
+<a class="card" href="https://wxmpurl.cn/Eu8LOaZ05Cc">
+<div class="icon"><img src="xc.png"></div>
+<div class="info"><div class="title">外卖返利-新人免单</div><div class="desc">点外卖先领券，每单都省钱</div></div>
+<div class="arrow">›</div>
+</a>
 
-        </a>
-
-    </div>
+<a class="card" href="https://kzurl06.cn/tGbuW3">
+<div class="icon"><img src="gs.png"></div>
+<div class="info">
+<div class="title">购物返利-高省</div>
+<div class="desc">全网比价 · 最高返利</div>
+<div class="code">邀请码 <b id="code">7X46I0</b><button class="copy-btn" onclick="copyCode(event)">复制</button></div>
+</div>
+<div class="arrow">›</div>
+</a>
 
 </div>
-
-
-<div class="toast" id="toast">
-    已复制邀请码！
 </div>
 
+<div class="toast" id="toast">已复制邀请码！</div>
 
 <script>
+function copyCode(e){
+e.preventDefault();
+e.stopPropagation();
+let btn=e.currentTarget;
+navigator.clipboard.writeText(document.getElementById("code").innerText).then(()=>{
+btn.innerHTML="✅已复制";
+document.getElementById("toast").classList.add("show");
+setTimeout(()=>{
+btn.innerHTML="复制";
+document.getElementById("toast").classList.remove("show");
+},1600);
+});
+}
+</script>
+</body>
+</html>v class="info"><div class="title">外卖返利-新人免单</div><div class="desc">点外卖先领券，每单都省钱</div></div>
+<div class="arrow">›</div>
+</a>
 
-function copyCode(event) {
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    const code =
-        document.getElementById("code").innerText;
-
-    const btn =
-        event.currentTarget;
-
-    const toast =
-        document.getElementById("toast");
-
-
-    function success() {
-
-        btn.classList.add("ok");
-
-        btn.innerHTML =
-            "✅已复制";
-
-
-        toast.classList.add("show");
-
-
-        setTimeout(() => {
-
-            btn.classList.remove("ok");
-
-            btn.innerHTML =
-                "复制";
-
-            toast.classList.remove("show");
-
-        },1600);
-
-    }
-
-
-    navig
+<a class="card" href="https://kzurl06.cn/tGbuW3">
+<div class="icon"><img src="gs.png"></div>
