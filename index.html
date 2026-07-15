@@ -2,183 +2,63 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>水夕导航</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
-background:linear-gradient(180deg,#f7f9fc,#f2f5fa);
-min-height:100vh;
-}
-.app{
-max-width:420px;
-margin:auto;
-padding:28px 16px 50px;
-}
-.brand{text-align:center;margin-bottom:28px}
-.brand h1{font-size:30px;font-weight:700;color:#18243a}
-.brand p{margin-top:8px;color:#7c8798;font-size:14px}
-
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:#f5f7fa}
+.app{max-width:420px;margin:auto;padding:28px 16px}
+.brand{text-align:center;margin-bottom:26px}
+.brand h1{font-size:30px}
+.brand p{color:#7d8798;margin-top:8px}
 .menu{display:flex;flex-direction:column;gap:12px}
-
-.card{
-display:flex;
-align-items:center;
-background:#fff;
-border-radius:20px;
-padding:16px;
-text-decoration:none;
-color:#1b2638;
-box-shadow:0 3px 10px rgba(20,40,70,.06);
-transition:.2s;
-}
-.card:active{transform:scale(.98)}
-
-.icon{
-width:48px;
-height:48px;
-border-radius:16px;
-overflow:hidden;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#eef3ff;
-margin-right:14px;
-font-size:24px;
-}
+.card{display:flex;align-items:center;background:#fff;border-radius:20px;padding:16px;text-decoration:none;color:#222;box-shadow:0 3px 10px #0000000d}
+.icon{width:48px;height:48px;border-radius:16px;overflow:hidden;margin-right:14px;display:flex;align-items:center;justify-content:center;background:#eef3ff;font-size:24px}
 .icon img{width:100%;height:100%;object-fit:cover}
-
 .info{flex:1}
 .title{font-size:17px;font-weight:600}
-.desc{font-size:13px;color:#738095;margin-top:4px}
-
-.arrow{font-size:22px;color:#c4cedc}
-
-.code{
-display:flex;
-align-items:center;
-font-size:13px;
-color:#738095;
-margin-top:6px;
-}
-.code b{
-margin-left:5px;
-padding:2px 7px;
-border-radius:8px;
-background:#fde8e5;
-color:#c0392b;
-}
-
-.copy-btn{
-margin-left:8px;
-border:0;
-padding:3px 10px;
-border-radius:20px;
-background:#eef2f7;
-color:#3b4d68;
-font-size:13px;
-}
-
-.copy-btn.ok{
-background:#dff4e7;
-color:#16834a;
-}
-
-.toast{
-position:fixed;
-left:50%;
-bottom:35px;
-transform:translateX(-50%) translateY(50px);
-opacity:0;
-background:rgba(30,38,52,.92);
-color:white;
-padding:10px 22px;
-border-radius:30px;
-font-size:14px;
-transition:.3s;
-}
-.toast.show{
-opacity:1;
-transform:translateX(-50%) translateY(0);
-}
+.desc,.code{font-size:13px;color:#738095;margin-top:5px}
+.arrow{font-size:22px;color:#c5cedb}
+.code b{background:#fde8e5;color:#c0392b;padding:2px 7px;border-radius:8px}
+.copy-btn{margin-left:8px;border:0;background:#eef2f7;border-radius:20px;padding:3px 10px;font-size:13px}
+.copy-btn.ok{background:#dff4e7;color:#16834a}
+.toast{position:fixed;bottom:35px;left:50%;transform:translate(-50%,60px);opacity:0;background:#202938;color:#fff;padding:10px 22px;border-radius:30px;transition:.3s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
 </style>
 </head>
-
 <body>
 <div class="app">
-
-<div class="brand">
-<h1>水夕导航</h1>
-<p>全网优质资源 · 一键直达</p>
-</div>
-
+<div class="brand"><h1>水夕导航</h1><p>全网优质资源 · 一键直达</p></div>
 <div class="menu">
-
-<a class="card" target="_blank" href="https://vip.777haoka.cn/index?k=Nk5kalpNVDdaanc9">
-<div class="icon"><img src="sxtx.png"></div>
-<div class="info"><div class="title">水夕通讯-流量卡推荐</div><div class="desc">高性价比 · 官方授权</div></div>
-<div class="arrow">›</div>
-</a>
-
-<a class="card" target="_blank" href="https://sx.fc688.cn">
-<div class="icon"><img src="sxpgw.png"></div>
-<div class="info"><div class="title">水夕瓶盖网</div><div class="desc">轻松扫码 · 每日羊毛</div></div>
-<div class="arrow">›</div>
-</a>
-
-<a class="card" target="_blank" href="https://qun.qq.com">
-<div class="icon">💬</div>
-<div class="info"><div class="title">加入QQ群</div><div class="desc">神卡通知 · 瓶盖报水</div></div>
-<div class="arrow">›</div>
-</a>
-
-<a class="card" target="_blank" href="https://wxmpurl.cn/Eu8LOaZ05Cc">
-<div class="icon"><img src="xc.png"></div>
-<div class="info"><div class="title">外卖返利-新人免单</div><div class="desc">点外卖先领券，每单都省钱</div></div>
-<div class="arrow">›</div>
-</a>
-
-<a class="card" target="_blank" href="https://kzurl06.cn/tGbuW3">
-<div class="icon"><img src="gs.png"></div>
-<div class="info">
-<div class="title">购物返利-高省</div>
-<div class="desc">全网比价 · 最高返利</div>
-<div class="code">
-邀请码<b id="code">7X46I0</b>
-<button class="copy-btn" onclick="copyCode(event)">📋复制</button>
+<a class="card" href="https://vip.777haoka.cn/index?k=Nk5kalpNVDdaanc9"><div class="icon"><img src="sxtx.png"></div><div class="info"><div class="title">水夕通讯-流量卡推荐</div><div class="desc">高性价比 · 官方授权</div></div><div class="arrow">›</div></a>
+<a class="card" href="https://sx.fc688.cn"><div class="icon"><img src="sxpgw.png"></div><div class="info"><div class="title">水夕瓶盖网</div><div class="desc">轻松扫码 · 每日羊毛</div></div><div class="arrow">›</div></a>
+<a class="card" target="_blank" href="https://qun.qq.com/universal-share/share?ac=1&authKey=MBLTkvtAeig0SQBDsppKYXV%2FIB0oKjtoQNVnLEUk30%2B1POM239zj12H2RcY1pykt&busi_data=eyJncm91cENvZGUiOiIxMDQ4ODI4MTY3IiwidG9rZW4iOiJld29hd3ZyRXhWc21tYXprRzlIWFBzV1RVbG5JR3VLci81QW1zSlAyVkNvSnBpN3dLcy8wY2xXNVk1RCtrZkhTIiwidWluIjoiMTk4ODUzMzYxIn0%3D&data=pdE9XEa0aUH58sTOatoF_MSxQmNrAwsH_-l0tojK3uMlV-YGJM0SiBiqyeX_NPip3Zk5QAP3BUn7LpJyBQCLAA&svctype=4&tempid=h5_group_info"><div class="icon">💬</div><div class="info"><div class="title">加入QQ群</div><div class="desc">神卡通知 · 瓶盖报水</div></div><div class="arrow">›</div></a>
+<a class="card" href="https://wxmpurl.cn/Eu8LOaZ05Cc"><div class="icon"><img src="xc.png"></div><div class="info"><div class="title">外卖返利-新人免单</div><div class="desc">点外卖先领券，每单都省钱</div></div><div class="arrow">›</div></a>
+<a class="card" href="https://kzurl06.cn/tGbuW3"><div class="icon"><img src="gs.png"></div><div class="info"><div class="title">购物返利-高省</div><div class="desc">全网比价 · 最高返利</div><div class="code">邀请码<b id="code">7X46I0</b><button class="copy-btn" onclick="copyCode(event)">📋复制</button></div></div><div class="arrow">›</div></a>
 </div>
 </div>
-<div class="arrow">›</div>
-</a>
-
-</div>
-</div>
-
 <div class="toast" id="toast">已复制邀请码！</div>
-
 <script>
 function copyCode(e){
-e.preventDefault();
-e.stopPropagation();
-
-navigator.clipboard.writeText(document.getElementById('code').innerText)
-.then(()=>{
-let btn=e.currentTarget;
-let toast=document.getElementById('toast');
-
-btn.classList.add('ok');
-btn.innerHTML='✅ 已复制';
-toast.classList.add('show');
-
-setTimeout(()=>{
-btn.classList.remove('ok');
-btn.innerHTML='📋复制';
-toast.classList.remove('show');
-},1600);
-});
+ e.preventDefault();
+ e.stopPropagation();
+ const code=document.getElementById('code').innerText;
+ const btn=e.currentTarget;
+ const toast=document.getElementById('toast');
+ const done=()=>{
+  btn.classList.add('ok');
+  btn.innerHTML='✅已复制';
+  toast.classList.add('show');
+  setTimeout(()=>{btn.classList.remove('ok');btn.innerHTML='📋复制';toast.classList.remove('show')},1600);
+ };
+ if(navigator.clipboard && window.isSecureContext){
+  navigator.clipboard.writeText(code).then(done);
+ }else{
+  const t=document.createElement('textarea');
+  t.value=code;document.body.appendChild(t);t.select();
+  document.execCommand('copy');document.body.removeChild(t);done();
+ }
 }
 </script>
-
 </body>
 </html>
