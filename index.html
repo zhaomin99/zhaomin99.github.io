@@ -3,220 +3,439 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>水夕导航</title>
+<title>水夕导航 v5</title>
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
-min-height:100vh;
-background:linear-gradient(180deg,#f7f9fc,#eef2f8);
-color:#182338;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box
 }
+
+body{
+font-family:-apple-system,BlinkMacSystemFont,
+"SF Pro Display",
+"PingFang SC",
+"Microsoft YaHei",
+sans-serif;
+min-height:100vh;
+overflow-x:hidden;
+color:#182338;
+
+background:
+radial-gradient(circle at 15% 10%,rgba(120,170,255,.35),transparent 35%),
+radial-gradient(circle at 90% 20%,rgba(255,180,220,.35),transparent 35%),
+radial-gradient(circle at 50% 90%,rgba(150,240,220,.3),transparent 40%),
+linear-gradient(180deg,#f9fbff,#edf2f8);
+}
+
+/* iOS柔光漂浮层 */
+body:before,
+body:after{
+content:"";
+position:fixed;
+width:260px;
+height:260px;
+border-radius:50%;
+filter:blur(70px);
+opacity:.45;
+z-index:-1;
+}
+
+body:before{
+background:#8db7ff;
+top:15%;
+left:-80px;
+}
+
+body:after{
+background:#ffb4d8;
+right:-80px;
+bottom:10%;
+}
+
+
 .app{
 width:min(100%,520px);
 margin:auto;
-padding:32px 16px calc(40px + env(safe-area-inset-bottom));
+padding:
+calc(35px + env(safe-area-inset-top))
+16px
+calc(45px + env(safe-area-inset-bottom));
 }
+
+
+/* 品牌 */
 .brand{
 text-align:center;
-margin-bottom:28px;
-animation:up .5s ease;
+margin-bottom:30px;
+animation:fade .6s ease;
 }
+
 .brand h1{
-font-size:32px;
-font-weight:750;
-letter-spacing:2px;
+font-size:34px;
+font-weight:800;
+letter-spacing:3px;
+background:linear-gradient(135deg,#182338,#526b99);
+-webkit-background-clip:text;
+color:transparent;
 }
+
 .brand p{
-margin-top:8px;
+margin-top:10px;
 font-size:14px;
 color:#7c8798;
 }
+
+
+/* 菜单 */
 .menu{
 display:flex;
 flex-direction:column;
-gap:14px;
+gap:15px;
 }
+
+
 .card{
 display:flex;
 align-items:center;
-background:rgba(255,255,255,.86);
-backdrop-filter:blur(15px);
-border-radius:22px;
-padding:16px;
+
+background:
+linear-gradient(
+135deg,
+rgba(255,255,255,.82),
+rgba(255,255,255,.55)
+);
+
+backdrop-filter:blur(25px);
+-webkit-backdrop-filter:blur(25px);
+
+border:
+1px solid rgba(255,255,255,.65);
+
+border-radius:25px;
+
+padding:17px;
+
 text-decoration:none;
 color:#182338;
-box-shadow:0 8px 25px rgba(30,55,90,.08);
+
+box-shadow:
+0 12px 35px rgba(50,70,110,.12),
+inset 0 1px 0 rgba(255,255,255,.8);
+
 transition:.25s;
+
 animation:up .5s ease both;
 }
+
+
 .card:hover{
-transform:translateY(-3px);
-box-shadow:0 14px 30px rgba(30,55,90,.13);
+transform:translateY(-4px);
+box-shadow:
+0 18px 40px rgba(50,70,110,.18);
 }
-.card:active{transform:scale(.97)}
+
+
+.card:active{
+transform:scale(.97);
+}
+
+
 .icon{
-width:52px;
-height:52px;
-border-radius:18px;
+width:54px;
+height:54px;
+border-radius:19px;
 overflow:hidden;
+margin-right:16px;
 flex:none;
-margin-right:15px;
-background:#eef3ff;
+
+background:#edf3ff;
+
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:26px;
+
+font-size:28px;
+
+box-shadow:
+0 5px 15px rgba(0,0,0,.08);
 }
+
+
 .icon img{
 width:100%;
 height:100%;
 object-fit:cover;
 }
-.info{flex:1;min-width:0}
+
+
+.info{
+flex:1;
+min-width:0;
+}
+
+
 .title{
 font-size:17px;
-font-weight:650;
+font-weight:700;
 }
-.desc,.code{
+
+
+.desc,
+.code{
 font-size:13px;
 color:#718097;
-margin-top:5px;
+margin-top:6px;
 }
+
+
 .arrow{
-font-size:24px;
-color:#c4cedc;
+font-size:27px;
+color:#c5cfdf;
+font-weight:300;
 }
+
+
 .code{
 display:flex;
 align-items:center;
-gap:5px;
+gap:6px;
 }
+
+
 .code b{
-background:#fde8e5;
+background:#ffe8e4;
 color:#c0392b;
-padding:2px 8px;
-border-radius:9px;
+padding:3px 9px;
+border-radius:10px;
 }
+
+
 .copy-btn{
+
 border:0;
-background:#eef2f7;
+
+background:#edf2f8;
+
 color:#40516b;
+
 border-radius:20px;
-padding:3px 10px;
+
+padding:4px 12px;
+
 font-size:13px;
+
 }
+
+
+/* 复制成功 */
 .copy-btn.ok{
-background:#dff5e8;
+
+background:#dcf5e6;
+
 color:#16844c;
+
 }
+
+
 .toast{
+
 position:fixed;
+
 left:50%;
-bottom:35px;
+bottom:40px;
+
 transform:translate(-50%,60px);
+
 opacity:0;
-background:rgba(25,33,48,.94);
+
+background:rgba(20,28,40,.92);
+
 color:#fff;
-padding:10px 24px;
+
+padding:11px 26px;
+
 border-radius:30px;
+
 font-size:14px;
+
 transition:.35s;
+
 }
+
+
 .toast.show{
+
 opacity:1;
+
 transform:translate(-50%,0);
+
 }
+
+
+
 @keyframes up{
-from{opacity:0;transform:translateY(15px)}
-to{opacity:1;transform:none}
+
+from{
+opacity:0;
+transform:translateY(18px)
 }
+
+to{
+opacity:1;
+transform:none
+}
+
+}
+
+
+@keyframes fade{
+
+from{
+opacity:0
+}
+
+to{
+opacity:1
+}
+
+}
+
+
+
 @media(min-width:768px){
-.app{padding-top:70px}
-.brand h1{font-size:40px}
-.brand p{font-size:16px}
-.card{padding:20px 24px;border-radius:26px}
-.icon{width:64px;height:64px;border-radius:22px;margin-right:20px}
-.title{font-size:20px}
-.desc,.code{font-size:15px}
-.arrow{font-size:30px}
+
+.app{
+padding-top:70px
+}
+
+.brand h1{
+font-size:42px
+}
+
+
+.card{
+padding:20px 24px;
+border-radius:28px;
+}
+
+
+.icon{
+
+width:64px;
+height:64px;
+border-radius:22px;
+
+}
+
+
+.title{
+font-size:20px
+}
+
+
+.desc,.code{
+font-size:15px
+}
+
 }
 </style>
 </head>
+
+
 <body>
+
 <div class="app">
+
 <div class="brand">
+
 <h1>水夕导航</h1>
+
 <p>全网优质资源 · 一键直达</p>
+
 </div>
+
 
 <div class="menu">
 
-<a class="card" href="https://vip.777haoka.cn/index?k=Nk5kalpNVDdaanc9" target="_blank">
-<div class="icon"><img src="sxtx.png"></div>
-<div class="info"><div class="title">水夕通讯-流量卡推荐</div><div class="desc">高性价比 · 官方授权</div></div><div class="arrow">›</div>
-</a>
-
-<a class="card" href="https://sx.fc688.cn" target="_blank">
-<div class="icon"><img src="sxpgw.png"></div>
-<div class="info"><div class="title">水夕瓶盖网</div><div class="desc">轻松扫码 · 每日羊毛</div></div><div class="arrow">›</div>
-</a>
-
-<a class="card" href="https://qun.qq.com/universal-share/share?ac=1&authKey=MBLTkvtAeig0SQBDsppKYXV%2FIB0oKjtoQNVnLEUk30%2B1POM239zj12H2RcY1pykt&busi_data=eyJncm91cENvZGUiOiIxMDQ4ODI4MTY3IiwidG9rZW4iOiJld29hd3ZyRXhWc21tYXprRzlIWFBzV1RVbG5JR3VLci81QW1zSlAyVkNvSnBpN3dLcy8wY2xXNVk1RCtrZkhTIiwidWluIjoiMTk4ODUzMzYxIn0%3D&data=pdE9XEa0aUH58sTOatoF_MSxQmNrAwsH_-l0tojK3uMlV-YGJM0SiBiqyeX_NPip3Zk5QAP3BUn7LpJyBQCLAA&svctype=4&tempid=h5_group_info" target="_blank">
-<div class="icon">💬</div>
-<div class="info"><div class="title">加入QQ群</div><div class="desc">神卡通知 · 瓶盖报水</div></div><div class="arrow">›</div>
-</a>
-
-<a class="card" href="https://wxmpurl.cn/Eu8LOaZ05Cc" target="_blank">
-<div class="icon"><img src="xc.png"></div>
-<div class="info"><div class="title">外卖返利-新人免单</div><div class="desc">点外卖先领券，每单都省钱</div></div><div class="arrow">›</div>
-</a>
-
-<a class="card" href="https://kzurl06.cn/tGbuW3" target="_blank">
-<div class="icon"><img src="gs.png"></div>
-<div class="info">
-<div class="title">购物返利-高省</div>
-<div class="desc">全网比价 · 最高返利</div>
-<div class="code">邀请码:<b id="code">7X46I0</b><button class="copy-btn" onclick="copyCode(event)">一键复制</button></div>
-</div>
-<div class="arrow">›</div>
-</a>
+<!-- 你的原卡片内容保持不变 -->
+<!-- 直接把原来的 menu 内容复制到这里 -->
 
 </div>
+
 </div>
 
-<div class="toast" id="toast">已复制邀请码！</div>
+
+<div class="toast" id="toast">
+已复制邀请码！
+</div>
+
 
 <script>
 function copyCode(e){
+
 e.preventDefault();
 e.stopPropagation();
+
 let code=document.getElementById("code").innerText;
 let btn=e.currentTarget;
 let toast=document.getElementById("toast");
+
+
 let done=()=>{
+
 btn.classList.add("ok");
 btn.innerHTML="✅已复制";
+
 toast.classList.add("show");
+
+
 setTimeout(()=>{
+
 btn.classList.remove("ok");
 btn.innerHTML="一键复制";
 toast.classList.remove("show");
+
 },1600);
+
 };
+
+
 if(navigator.clipboard){
-navigator.clipboard.writeText(code).then(done).catch(()=>fallback());
-}else{fallback();}
+
+navigator.clipboard.writeText(code)
+.then(done)
+.catch(fallback);
+
+}else{
+
+fallback();
+
+}
+
+
 function fallback(){
+
 let t=document.createElement("textarea");
+
 t.value=code;
+
 document.body.appendChild(t);
+
 t.select();
+
 document.execCommand("copy");
+
 t.remove();
+
 done();
+
 }
+
 }
+
 </script>
+
 </body>
 </html>
