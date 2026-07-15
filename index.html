@@ -1,499 +1,184 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-    <title>水夕导航</title>
-    <style>
-        /* 全局重置 & 字体 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>水夕导航</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+background:linear-gradient(180deg,#f7f9fc,#f2f5fa);
+min-height:100vh;
+}
+.app{
+max-width:420px;
+margin:auto;
+padding:28px 16px 50px;
+}
+.brand{text-align:center;margin-bottom:28px}
+.brand h1{font-size:30px;font-weight:700;color:#18243a}
+.brand p{margin-top:8px;color:#7c8798;font-size:14px}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
-            background: #f4f6fa;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
+.menu{display:flex;flex-direction:column;gap:12px}
 
-        .app {
-            max-width: 400px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 48px 48px 32px 32px;
-            padding: 32px 24px 30px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
-            transition: all 0.2s ease;
-        }
+.card{
+display:flex;
+align-items:center;
+background:#fff;
+border-radius:20px;
+padding:16px;
+text-decoration:none;
+color:#1b2638;
+box-shadow:0 3px 10px rgba(20,40,70,.06);
+transition:.2s;
+}
+.card:active{transform:scale(.98)}
 
-        .brand {
-            text-align: center;
-            margin-bottom: 28px;
-        }
-        .brand h1 {
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            background: linear-gradient(145deg, #1e2b4f, #2b3f6e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .brand .sub {
-            font-size: 13px;
-            color: #7b8aa6;
-            letter-spacing: 4px;
-            margin-top: 4px;
-            font-weight: 400;
-        }
-        .brand .sub span {
-            display: inline-block;
-            background: #eef2f7;
-            padding: 0 14px;
-            border-radius: 20px;
-            color: #3d5170;
-        }
+.icon{
+width:48px;
+height:48px;
+border-radius:16px;
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#eef3ff;
+margin-right:14px;
+font-size:24px;
+}
+.icon img{width:100%;height:100%;object-fit:cover}
 
-        .menu {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
+.info{flex:1}
+.title{font-size:17px;font-weight:600}
+.desc{font-size:13px;color:#738095;margin-top:4px}
 
-        .entry {
-            display: block;
-            background: white;
-            border-radius: 24px;
-            padding: 18px 22px;
-            text-decoration: none;
-            color: #1a2639;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
-            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            position: relative;
-            overflow: hidden;
-            -webkit-tap-highlight-color: transparent;
-            user-select: none;
-        }
-        .entry:active {
-            transform: scale(0.97);
-            background: #f8faff;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-        }
+.arrow{font-size:22px;color:#c4cedc}
 
-        .entry--placeholder {
-            opacity: 0.7;
-            background: #f8fafc;
-            border: 1.5px dashed #d0d9e6;
-            box-shadow: none;
-            cursor: default;
-            pointer-events: none;
-        }
-        .entry--placeholder:active {
-            transform: none;
-            background: #f8fafc;
-            box-shadow: none;
-        }
-        .entry--placeholder .entry-arrow {
-            color: #c5d0df;
-        }
+.code{
+display:flex;
+align-items:center;
+font-size:13px;
+color:#738095;
+margin-top:6px;
+}
+.code b{
+margin-left:5px;
+padding:2px 7px;
+border-radius:8px;
+background:#fde8e5;
+color:#c0392b;
+}
 
-        .entry-content {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
+.copy-btn{
+margin-left:8px;
+border:0;
+padding:3px 10px;
+border-radius:20px;
+background:#eef2f7;
+color:#3b4d68;
+font-size:13px;
+}
 
-        .entry-icon {
-            flex-shrink: 0;
-            width: 52px;
-            height: 52px;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-            background: #f0f4fe;
-            color: #2b3f6e;
-            transition: 0.2s;
-            overflow: hidden;
-        }
-        .entry--card .entry-icon { background: #eef3ff; }
-        .entry--bottle .entry-icon { background: #e6f7f0; color: #1a7a5a; }
-        .entry--qq .entry-icon { background: #f0ebff; color: #6d4cbd; }
-        .entry--rebate .entry-icon { background: #fef3e6; color: #c07a2a; }
-        .entry--shopping .entry-icon { background: #fde8e5; color: #c0392b; }
+.copy-btn.ok{
+background:#dff4e7;
+color:#16834a;
+}
 
-        .entry-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .entry-text {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .entry-title {
-            font-size: 17px;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-            color: #141e30;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .entry-desc {
-            font-size: 13px;
-            color: #6b7c98;
-            margin-top: 2px;
-            font-weight: 400;
-            letter-spacing: 0.2px;
-        }
-
-        /* ---- 邀请码行：与描述文字同字号 (13px) ---- */
-        .entry-invite {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            margin-top: 3px;
-            font-size: 13px;          /* 与 .entry-desc 一致 */
-            color: #6b7c98;
-            flex-wrap: wrap;
-        }
-
-        .entry-invite .invite-code {
-            font-weight: 600;
-            color: #c0392b;
-            background: #fde8e5;
-            padding: 0 6px;
-            border-radius: 10px;
-            font-size: 13px;          /* 与父级一致 */
-            letter-spacing: 0.3px;
-            font-family: "SF Mono", "Menlo", monospace;
-        }
-
-        /* 复制按钮：字号也调整为13px，与文字同大，但按钮内可稍小一点，但为了统一，设为13px */
-        .copy-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 3px;
-            background: #eef2f7;
-            padding: 1px 8px 1px 6px;
-            border-radius: 30px;
-            font-size: 13px;          /* 与描述文字一致 */
-            font-weight: 500;
-            color: #3d5170;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border: none;
-            font-family: inherit;
-            line-height: 1.5;
-            -webkit-tap-highlight-color: transparent;
-            user-select: none;
-        }
-        .copy-btn:active {
-            transform: scale(0.92);
-            background: #d5dee9;
-        }
-        .copy-btn .copy-icon {
-            font-size: 13px;          /* 图标与文字大小匹配 */
-            line-height: 1;
-        }
-        .copy-btn.copied {
-            background: #d4edda;
-            color: #1a7a4a;
-        }
-
-        .entry-arrow {
-            flex-shrink: 0;
-            color: #bcc9db;
-            font-size: 20px;
-            transition: 0.2s;
-            margin-left: 4px;
-        }
-        .entry:active .entry-arrow {
-            transform: translateX(4px);
-            color: #2b3f6e;
-        }
-
-        .tag-qq {
-            display: inline-block;
-            background: #e9e1fa;
-            color: #5a3d9a;
-            font-size: 10px;
-            font-weight: 600;
-            padding: 2px 10px;
-            border-radius: 30px;
-            letter-spacing: 0.5px;
-            margin-left: 4px;
-        }
-        .tag-coming {
-            display: inline-block;
-            background: #e8edf5;
-            color: #7a8ba8;
-            font-size: 10px;
-            font-weight: 600;
-            padding: 2px 10px;
-            border-radius: 30px;
-            letter-spacing: 0.5px;
-            margin-left: 4px;
-        }
-
-        /* Toast */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(80px);
-            background: rgba(30, 38, 52, 0.92);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            color: #f0f4fc;
-            padding: 10px 24px;
-            border-radius: 40px;
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 0.3px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2);
-            z-index: 999;
-            pointer-events: none;
-            white-space: nowrap;
-        }
-        .toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        /* 暗色模式 */
-        @media (prefers-color-scheme: dark) {
-            body { background: #161c28; }
-            .app {
-                background: rgba(30, 38, 52, 0.92);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
-                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
-            }
-            .brand h1 {
-                background: linear-gradient(145deg, #b6c8f0, #8aa0d0);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
-            }
-            .brand .sub { color: #8899b3; }
-            .brand .sub span { background: #262f40; color: #b0c3df; }
-            .entry { background: #232b3d; border-color: rgba(255,255,255,0.06); color: #e5ecf5; }
-            .entry:active { background: #2c354a; }
-            .entry-title { color: #eef3fc; }
-            .entry-desc { color: #99aec9; }
-            .entry-icon { background: #2b364f; color: #b0c8f0; }
-            .entry--card .entry-icon { background: #26314f; }
-            .entry--bottle .entry-icon { background: #1b3a33; color: #60c0a0; }
-            .entry--qq .entry-icon { background: #312b55; color: #b094f0; }
-            .entry--rebate .entry-icon { background: #3d3220; color: #e0a050; }
-            .entry--shopping .entry-icon { background: #3d2520; color: #e07a6a; }
-            .entry-arrow { color: #5d728f; }
-            .tag-qq { background: #3d3560; color: #c8b8f0; }
-            .tag-coming { background: #2c3548; color: #8a9dbd; }
-            .entry--placeholder { opacity: 0.6; background: #1e2638; border-color: rgba(255,255,255,0.08); }
-            .entry--placeholder .entry-icon { background: #262f44; color: #6a7f9f; }
-            .entry--placeholder .entry-arrow { color: #4a5f7f; }
-            .entry--placeholder .entry-title { color: #8a9dbd; }
-            .entry--placeholder .entry-desc { color: #5d728f; }
-            .entry--placeholder:active { background: #1e2638; }
-
-            .entry-invite { color: #99aec9; }
-            .entry-invite .invite-code { color: #e07a6a; background: #3d2520; }
-            .copy-btn { background: #2c3548; color: #b0c3df; }
-            .copy-btn:active { background: #3d4a62; }
-            .copy-btn.copied { background: #1a3a2a; color: #60c0a0; }
-            .toast { background: rgba(20,26,40,0.95); color: #eef3fc; }
-        }
-
-        /* 小屏微调 */
-        @media (max-width: 400px) {
-            .app { padding: 24px 16px; border-radius: 32px; }
-            .entry { padding: 14px 16px; border-radius: 20px; }
-            .entry-icon { width: 44px; height: 44px; font-size: 22px; border-radius: 14px; }
-            .entry-title { font-size: 15px; }
-            .entry-invite { font-size: 12px; gap: 3px; margin-top: 2px; }   /* 小屏可稍小，但保持相对一致 */
-            .entry-invite .invite-code { font-size: 12px; padding: 0 4px; }
-            .copy-btn { font-size: 12px; padding: 0 6px 0 4px; }
-            .copy-btn .copy-icon { font-size: 12px; }
-            .toast { font-size: 13px; padding: 8px 18px; bottom: 20px; }
-        }
-    </style>
+.toast{
+position:fixed;
+left:50%;
+bottom:35px;
+transform:translateX(-50%) translateY(50px);
+opacity:0;
+background:rgba(30,38,52,.92);
+color:white;
+padding:10px 22px;
+border-radius:30px;
+font-size:14px;
+transition:.3s;
+}
+.toast.show{
+opacity:1;
+transform:translateX(-50%) translateY(0);
+}
+</style>
 </head>
+
 <body>
+<div class="app">
 
-    <div class="app">
-        <div class="brand">
-            <h1>水夕导航</h1>
-            <div class="sub"><span>👇 点击卡片 · 一键跳转</span></div>
-        </div>
+<div class="brand">
+<h1>水夕导航</h1>
+<p>全网优质资源 · 一键直达</p>
+</div>
 
-        <div class="menu">
+<div class="menu">
 
-            <!-- 1. 流量卡推荐 -->
-            <a href="https://vip.777haoka.cn/index?k=Nk5kalpNVDdaanc9" target="_blank" rel="noopener noreferrer" class="entry entry--card">
-                <div class="entry-content">
-                    <div class="entry-icon"><img src="sxtx.png" alt="水夕通讯" /></div>
-                    <div class="entry-text">
-                        <div class="entry-title">水夕通讯-流量卡推荐</div>
-                        <div class="entry-desc">高性价比 · 官方授权</div>
-                    </div>
-                    <div class="entry-arrow">›</div>
-                </div>
-            </a>
+<a class="card" target="_blank" href="https://vip.777haoka.cn/index?k=Nk5kalpNVDdaanc9">
+<div class="icon"><img src="sxtx.png"></div>
+<div class="info"><div class="title">水夕通讯-流量卡推荐</div><div class="desc">高性价比 · 官方授权</div></div>
+<div class="arrow">›</div>
+</a>
 
-            <!-- 2. 瓶盖网 -->
-            <a href="https://sx.fc688.cn" target="_blank" rel="noopener noreferrer" class="entry entry--bottle">
-                <div class="entry-content">
-                    <div class="entry-icon"><img src="sxpgw.png" alt="水夕瓶盖网" /></div>
-                    <div class="entry-text">
-                        <div class="entry-title">水夕瓶盖网</div>
-                        <div class="entry-desc">轻松扫码 · 每日羊毛</div>
-                    </div>
-                    <div class="entry-arrow">›</div>
-                </div>
-            </a>
+<a class="card" target="_blank" href="https://sx.fc688.cn">
+<div class="icon"><img src="sxpgw.png"></div>
+<div class="info"><div class="title">水夕瓶盖网</div><div class="desc">轻松扫码 · 每日羊毛</div></div>
+<div class="arrow">›</div>
+</a>
 
-            <!-- 3. QQ群 -->
-            <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=MBLTkvtAeig0SQBDsppKYXV%2FIB0oKjtoQNVnLEUk30%2B1POM239zj12H2RcY1pykt&busi_data=eyJncm91cENvZGUiOiIxMDQ4ODI4MTY3IiwidG9rZW4iOiJld29hd3ZyRXhWc21tYXprRzlIWFBzV1RVbG5JR3VLci81QW1zSlAyVkNvSnBpN3dLcy8wY2xXNVk1RCtrZkhTIiwidWluIjoiMTk4ODUzMzYxIn0%3D&data=pdE9XEa0aUH58sTOatoF_MSxQmNrAwsH_-l0tojK3uMlV-YGJM0SiBiqyeX_NPip3Zk5QAP3BUn7LpJyBQCLAA&svctype=4&tempid=h5_group_info" target="_blank" rel="noopener noreferrer" class="entry entry--qq">
-                <div class="entry-content">
-                    <div class="entry-icon">💬</div>
-                    <div class="entry-text">
-                        <div class="entry-title">
-                            加入QQ群
-                            <span class="tag-qq">1048828167</span>
-                        </div>
-                        <div class="entry-desc">神卡通知 · 瓶盖报水</div>
-                    </div>
-                    <div class="entry-arrow">›</div>
-                </div>
-            </a>
+<a class="card" target="_blank" href="https://qun.qq.com">
+<div class="icon">💬</div>
+<div class="info"><div class="title">加入QQ群</div><div class="desc">神卡通知 · 瓶盖报水</div></div>
+<div class="arrow">›</div>
+</a>
 
-            <!-- 4. 外卖返利 -->
-            <a href="https://wxmpurl.cn/Eu8LOaZ05Cc" target="_blank" rel="noopener noreferrer" class="entry entry--rebate">
-                <div class="entry-content">
-                    <div class="entry-icon"><img src="xc.png" alt="外卖返利" /></div>
-                    <div class="entry-text">
-                        <div class="entry-title">外卖返利-新人免单</div>
-                        <div class="entry-desc">点外卖先领券，每单都省钱</div>
-                    </div>
-                    <div class="entry-arrow">›</div>
-                </div>
-            </a>
+<a class="card" target="_blank" href="https://wxmpurl.cn/Eu8LOaZ05Cc">
+<div class="icon"><img src="xc.png"></div>
+<div class="info"><div class="title">外卖返利-新人免单</div><div class="desc">点外卖先领券，每单都省钱</div></div>
+<div class="arrow">›</div>
+</a>
 
-            <!-- 5. 购物返利-高省（邀请码与描述文字同字号 13px） -->
-            <a href="https://kzurl06.cn/tGbuW3" target="_blank" rel="noopener noreferrer" class="entry entry--shopping">
-                <div class="entry-content">
-                    <div class="entry-icon"><img src="gs.png" alt="购物返利-高省" /></div>
-                    <div class="entry-text">
-                        <div class="entry-title">购物返利-高省</div>
-                        <div class="entry-desc">全网比价 · 最高返利</div>
-                        <div class="entry-invite">
-                            <span>邀请码：</span>
-                            <span class="invite-code" id="inviteCode">7X46I0</span>
-                            <button class="copy-btn" id="copyBtn" onclick="copyInvite(event)">
-                                <span class="copy-icon">📋</span> 复制
-                            </button>
-                        </div>
-                    </div>
-                    <div class="entry-arrow">›</div>
-                </div>
-            </a>
+<a class="card" target="_blank" href="https://kzurl06.cn/tGbuW3">
+<div class="icon"><img src="gs.png"></div>
+<div class="info">
+<div class="title">购物返利-高省</div>
+<div class="desc">全网比价 · 最高返利</div>
+<div class="code">
+邀请码<b id="code">7X46I0</b>
+<button class="copy-btn" onclick="copyCode(event)">📋复制</button>
+</div>
+</div>
+<div class="arrow">›</div>
+</a>
 
-        </div>
+</div>
+</div>
 
-        <div class="toast" id="toast">已复制邀请码！</div>
-    </div>
+<div class="toast" id="toast">已复制邀请码！</div>
 
-    <script>
-        function copyInvite(event) {
-            if (event) {
-                event.stopPropagation();
-                event.preventDefault();
-            }
+<script>
+function copyCode(e){
+e.preventDefault();
+e.stopPropagation();
 
-            const code = '7X46I0';
-            const copyBtn = document.getElementById('copyBtn');
-            const toast = document.getElementById('toast');
+navigator.clipboard.writeText(document.getElementById('code').innerText)
+.then(()=>{
+let btn=e.currentTarget;
+let toast=document.getElementById('toast');
 
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(code)
-                    .then(() => showCopiedFeedback(copyBtn, toast))
-                    .catch(() => fallbackCopy(code, copyBtn, toast));
-            } else {
-                fallbackCopy(code, copyBtn, toast);
-            }
-        }
+btn.classList.add('ok');
+btn.innerHTML='✅ 已复制';
+toast.classList.add('show');
 
-        function fallbackCopy(text, btn, toast) {
-            try {
-                const textarea = document.createElement('textarea');
-                textarea.value = text;
-                textarea.style.position = 'fixed';
-                textarea.style.opacity = '0';
-                textarea.style.left = '-9999px';
-                textarea.style.top = '-9999px';
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea);
-                showCopiedFeedback(btn, toast);
-            } catch (e) {
-                toast.textContent = '复制失败，请手动复制';
-                toast.classList.add('show');
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                    setTimeout(() => { toast.textContent = '已复制邀请码！'; }, 300);
-                }, 1500);
-            }
-        }
-
-        function showCopiedFeedback(btn, toast) {
-            btn.classList.add('copied');
-            const originalHTML = btn.innerHTML;
-            btn.innerHTML = '✅ 已复制';
-
-            toast.textContent = '已复制邀请码！';
-            toast.classList.add('show');
-
-            if (window._toastTimer) clearTimeout(window._toastTimer);
-            if (window._btnTimer) clearTimeout(window._btnTimer);
-
-            window._toastTimer = setTimeout(() => toast.classList.remove('show'), 1500);
-            window._btnTimer = setTimeout(() => {
-                btn.classList.remove('copied');
-                btn.innerHTML = originalHTML;
-            }, 1600);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const copyBtn = document.getElementById('copyBtn');
-            if (copyBtn) {
-                copyBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    e.preventDefault();
-                });
-            }
-        });
-    </script>
+setTimeout(()=>{
+btn.classList.remove('ok');
+btn.innerHTML='📋复制';
+toast.classList.remove('show');
+},1600);
+});
+}
+</script>
 
 </body>
 </html>
